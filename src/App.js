@@ -3,17 +3,21 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Play from "./pages/Play"
 import NoMatch from "./pages/NoMatch"
+import Nav from "./components/Nav"
+
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={Play}/>
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
-    </Router>
+    <div className="App">
+      <Nav/>
+      <Router>
+          <Switch>
+            <Route exact path="/" component={Play}/>
+            <Route component={NoMatch} />
+          </Switch>
+      </Router>
+    </div>
+    
   );
 }
 
