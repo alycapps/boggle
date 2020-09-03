@@ -1,3 +1,24 @@
+# Boggle
+## Created by Alyssa Capps (https://github.com/alycapps)
+
+A fun app that allows you to play a word search game.
+
+## Technologies used
+* React.js
+* React-Bootstrap
+* JavaScript
+* HTML
+* CSS
+
+## Install Directions
+* 
+* Must have node.js installed
+* Perform a npm install
+* To run "yarn start"
+
+Deployed at ____
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
