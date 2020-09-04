@@ -2,28 +2,37 @@ import React from "react";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card';
 
 var borderStyle = {
-    border: '2px solid black',
+    borderWidth: "2px",
     borderRadius: "25px",
     height: "50vh"
-  };
-
+};
 
 export const GameBoard = (props) => (
     <div>
          <br/>
         <Container>
           <Row>
+
+              {/* Left side */}
               <Col md={3}>
                 hello
               </Col>
-              <Col md={6} style={borderStyle}>
-                {props.children}
+
+              {/* Main Box */}
+              <Col md={6}>
+                <Card border="primary" style={borderStyle}>
+                    <Card.Body>{props.children}</Card.Body>
+                </Card>
               </Col>
+
+              {/* Right side */}
               <Col md={3}>
                 hello
               </Col>
+
           </Row>
         </Container>
     </div>
