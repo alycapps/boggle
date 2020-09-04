@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col'
 
 var borderStyle = {
     border: '2px solid black',
-    borderRadius: "25px"
+    borderRadius: "25px",
+    height: "50vh"
   };
 
 
