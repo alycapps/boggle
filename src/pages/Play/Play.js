@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import GameBoard from "../../components/GameBoard";
 import Die from "../../components/Die";
+import Row from 'react-bootstrap/Row'
+
 
 
 // const Play = () => (
@@ -70,10 +72,12 @@ class Play extends Component {
             <div>
                 <h1>Play page</h1>
                 <GameBoard>
-                {this.state.dice.map( die => (
-                    <Die key={die.id} value={die.value}>
-                    </Die>
-                ))}
+                    <Row>
+                        {this.state.dice.map( die => (
+                            <Die key={die.id} value={die.value}>
+                            </Die>
+                        ))}
+                    </Row>
                 </GameBoard>
             </div>
         )
