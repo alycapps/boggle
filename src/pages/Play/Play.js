@@ -9,27 +9,16 @@ import Row from 'react-bootstrap/Row'
 // const Play = () => (
 class Play extends Component {
     state = {
-        dice: [
-            // ["a","b","c","d","e","f"],
-            // ["g","h","i","j","k","l"],
-            // ["m","n","o","p","q","r"],
-            // ["s","t","u","v","w","x"],
-            // ["y","z","a","b","c","d"],
-            // ["e","f","g","h","i","j"],
-            // ["k","l","m","n","o","p"],
-            // ["q","r","s","t","u","v"],
-            // ["w","x","y","z","a","b"],
-            // ["c","d","e","f","g","h"],
-            // ["i","j","k","l","m","n"],
-            // ["o","p","q","r","s","t"],
-            // ["u","v","w","x","y","z"],
-            // ["a","b","c","d","e","f"],
-            // ["g","h","i","j","k","l"]
-        ]
+        dice: [],
+        boardSize: ""
     };
 
     componentDidMount() {
         this.randomizeDice()
+        //TODO: need to set boardSize equal to value from form later
+        this.setState({ 
+            boardSize: "3"
+      }, console.log(this.state.boardSize, "boardSize"));
     };
 
     randomizeDice() {
@@ -48,7 +37,8 @@ class Play extends Component {
             ["o","p","q","r","s","t"],
             ["u","v","w","x","y","z"],
             ["a","b","c","d","e","f"],
-            ["g","h","i","j","k","l"]
+            ["g","h","i","j","k","l"],
+            ["m","n","o","p","q","r"],
         ];
         let decidedArray = [];
         //below randomizes the letter chosen from each die
@@ -74,7 +64,7 @@ class Play extends Component {
                 <GameBoard>
                     <Row>
                         {this.state.dice.map( die => (
-                            <Die key={die.id} value={die.value}>
+                            <Die colSize={this.state.boardSize} key={die.id} value={die.value}>
                             </Die>
                         ))}
                     </Row>
