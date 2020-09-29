@@ -9,7 +9,9 @@ const express = require("express");
 const app = express();
 const mysql = require('mysql');
 const PORT = process.env.PORT || 3001;
-// const routes = require("./routes");
+const routes = require("./routes");
+const passport = require('./passport');
+
 
 // app.use(function(req, res, next) {
 // res.header('Access-Control-Allow-Origin', '*');
@@ -35,7 +37,7 @@ const connection = mysql.createConnection({
   host: process.env.dbHost,
   user: process.env.dbUser,
   password: process.env.dbPass,
-  port: '3306',
+//   port: '3306',
   database: process.env.dbName
 });
 
@@ -47,8 +49,24 @@ connection.connect(function(err) {
 	console.log('Connected to the MySQL server.');
 });
 
+connection.query('USE ' + process.env.dbName);	
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session()); // will call the deserializeUser
+
+// If its production environment!
+if (process.env.NODE_ENV === 'production') {
+	const path = require('path');
+	console.log('YOU ARE IN THE PRODUCTION ENV');
+	app.use('/static', express.static(path.join(__dirname, '../client/build/static')));
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, '../client/build/'))
+	});
+}
+
 // Add routes, both API and view
-// app.use(routes);
+app.use(routes);
 
 // Error handler
 app.use(function(err, req, res, next) {
