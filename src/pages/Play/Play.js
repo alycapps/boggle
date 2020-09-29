@@ -7,29 +7,57 @@ import Die from "../../components/Die";
 // const Play = () => (
 class Play extends Component {
     state = {
-        dice: {
-            "1":["a","b","c","d","e","f"],
-            "2":["a","b","c","d","e","f"],
-            "3":["a","b","c","d","e","f"],
-            "4":["a","b","c","d","e","f"],
-            "5":["a","b","c","d","e","f"],
-            "6":["a","b","c","d","e","f"],
-            "7":["a","b","c","d","e","f"],
-            "8":["a","b","c","d","e","f"],
-            "9":["a","b","c","d","e","f"],
-            "11":["a","b","c","d","e","f"],
-            "12":["a","b","c","d","e","f"],
-            "13":["a","b","c","d","e","f"],
-            "14":["a","b","c","d","e","f"],
-            "15":["a","b","c","d","e","f"],
-            "16":["a","b","c","d","e","f"],
-        }
+        dice: [
+            // ["a","b","c","d","e","f"],
+            // ["g","h","i","j","k","l"],
+            // ["m","n","o","p","q","r"],
+            // ["s","t","u","v","w","x"],
+            // ["y","z","a","b","c","d"],
+            // ["e","f","g","h","i","j"],
+            // ["k","l","m","n","o","p"],
+            // ["q","r","s","t","u","v"],
+            // ["w","x","y","z","a","b"],
+            // ["c","d","e","f","g","h"],
+            // ["i","j","k","l","m","n"],
+            // ["o","p","q","r","s","t"],
+            // ["u","v","w","x","y","z"],
+            // ["a","b","c","d","e","f"],
+            // ["g","h","i","j","k","l"]
+        ]
     };
+
     componentDidMount() {
         this.randomizeDice()
     };
+
     randomizeDice() {
-        console.log("gonna add in logic to chose value for each die")
+        let allDie = [
+            ["a","b","c","d","e","f"],
+            ["g","h","i","j","k","l"],
+            ["m","n","o","p","q","r"],
+            ["s","t","u","v","w","x"],
+            ["y","z","a","b","c","d"],
+            ["e","f","g","h","i","j"],
+            ["k","l","m","n","o","p"],
+            ["q","r","s","t","u","v"],
+            ["w","x","y","z","a","b"],
+            ["c","d","e","f","g","h"],
+            ["i","j","k","l","m","n"],
+            ["o","p","q","r","s","t"],
+            ["u","v","w","x","y","z"],
+            ["a","b","c","d","e","f"],
+            ["g","h","i","j","k","l"]
+        ];
+        let decidedArray = [];
+        //below randomizes the letter chosen from each die
+        allDie.forEach(die => {
+            var letterIndex = Math.floor(Math.random()*6)
+            decidedArray.push(die[letterIndex])
+        });
+        console.log("TODO in Play.js -- add in randomization of order of decidedArray");
+        this.setState({ 
+              dice: decidedArray
+        });
     };
 
     render() {
@@ -37,8 +65,11 @@ class Play extends Component {
             <div>
                 <h1>Play page</h1>
                 <GameBoard>
-                    <Die value={"A"}>
+                {/* {this.state.dice.map( die => ( */}
+                {this.state.dice.map( die => (
+                    <Die value={die}>
                     </Die>
+                ))}
                 </GameBoard>
             </div>
         )
