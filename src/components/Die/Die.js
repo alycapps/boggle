@@ -13,7 +13,7 @@ export const Die = (props) => (
     // <Card border="dark" bg="secondary">
     //     <Card.Body>{props.value}</Card.Body>
     // </Card>
-    <Col md={4}>
+    <Col md={4} className={props.key}>
         <Button variant="secondary" style={height}>
             {props.value}
         </Button>

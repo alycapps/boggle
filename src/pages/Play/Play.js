@@ -50,14 +50,19 @@ class Play extends Component {
         ];
         let decidedArray = [];
         //below randomizes the letter chosen from each die
+        let index = 0;
         allDie.forEach(die => {
             var letterIndex = Math.floor(Math.random()*6)
-            decidedArray.push(die[letterIndex])
+            var obj = {};
+            obj["id"] = index;
+            obj["value"] = die[letterIndex];
+            decidedArray.push(obj);
+            index ++;
         });
         console.log("TODO in Play.js -- add in randomization of order of decidedArray");
         this.setState({ 
               dice: decidedArray
-        });
+        }, console.log(decidedArray, "decidedArray"));
     };
 
     render() {
@@ -65,9 +70,8 @@ class Play extends Component {
             <div>
                 <h1>Play page</h1>
                 <GameBoard>
-                {/* {this.state.dice.map( die => ( */}
                 {this.state.dice.map( die => (
-                    <Die value={die}>
+                    <Die key={die.id} value={die.value}>
                     </Die>
                 ))}
                 </GameBoard>
