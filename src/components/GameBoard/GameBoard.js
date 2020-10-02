@@ -17,19 +17,19 @@ export const GameBoard = (props) => (
           <Row>
 
               {/* Left side */}
-              <Col md={3}>
+              <Col md={2}>
                 hello
               </Col>
 
               {/* Main Box */}
-              <Col md={6}>
+              <Col md={8}>
                 <Card border="primary" style={borderStyle}>
                     <Card.Body>{props.children}</Card.Body>
                 </Card>
               </Col>
 
               {/* Right side */}
-              <Col md={3}>
+              <Col md={2}>
                 hello
               </Col>
 
