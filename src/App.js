@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Play from "./pages/Play"
 import NoMatch from "./pages/NoMatch"
 import Nav from "./components/HeadNav"
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -19,6 +18,6 @@ function App() {
     </div>
     
   );
-}
+};
 
 export default App;

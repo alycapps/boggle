@@ -4,9 +4,6 @@ import GameBoard from "../../components/GameBoard";
 import Die from "../../components/Die";
 import Row from 'react-bootstrap/Row'
 
-
-
-// const Play = () => (
 class Play extends Component {
     state = {
         dice: [],
@@ -126,5 +123,4 @@ class Play extends Component {
     }
 };
 
-// export default Play;
 export default withRouter(Play);

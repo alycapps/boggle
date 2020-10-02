@@ -36,6 +36,6 @@ export const GameBoard = (props) => (
           </Row>
         </Container>
     </div>
-)
+);
 
 export default GameBoard;
