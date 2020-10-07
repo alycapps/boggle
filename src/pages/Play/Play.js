@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import GameBoard from "../../components/GameBoard";
+import NewGameMenu from "../../components/NewGameMenu"
 import Die from "../../components/Die";
 import Row from 'react-bootstrap/Row'
 
@@ -8,7 +9,7 @@ class Play extends Component {
     state = {
         dice: [],
         boardSize: "",
-        gameStart: "false"
+        gameStart: false
     };
 
     componentDidMount() {
@@ -120,7 +121,10 @@ class Play extends Component {
                                 ))}
                             </Row>
                     ) : (
-                        <h3>Not started yet</h3>
+                        <Row>
+                            <NewGameMenu>
+                            </NewGameMenu>
+                        </Row>
                     )}
                 </GameBoard>
 
