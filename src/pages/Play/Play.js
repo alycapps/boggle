@@ -8,6 +8,7 @@ class Play extends Component {
     state = {
         dice: [],
         boardSize: "",
+        gameStart: "false"
     };
 
     componentDidMount() {
@@ -111,13 +112,18 @@ class Play extends Component {
             <div>
                 <h1>Play page</h1>
                 <GameBoard>
-                    <Row>
-                        {this.state.dice.map( die => (
-                            <Die colSize={this.state.boardSize} key={die.id} value={die.value}>
-                            </Die>
-                        ))}
-                    </Row>
+                    {this.state.gameStart ? (
+                            <Row>
+                                {this.state.dice.map( die => (
+                                    <Die colSize={this.state.boardSize} key={die.id} value={die.value}>
+                                    </Die>
+                                ))}
+                            </Row>
+                    ) : (
+                        <h3>Not started yet</h3>
+                    )}
                 </GameBoard>
+
             </div>
         )
     }
