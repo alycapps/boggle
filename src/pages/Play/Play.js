@@ -121,10 +121,8 @@ class Play extends Component {
                                 ))}
                             </Row>
                     ) : (
-                        <Row>
                             <NewGameMenu>
                             </NewGameMenu>
-                        </Row>
                     )}
                 </GameBoard>
 
