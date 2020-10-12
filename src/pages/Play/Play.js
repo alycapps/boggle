@@ -111,7 +111,6 @@ class Play extends Component {
     render() {
         return (
             <div>
-                <h1>Play page</h1>
                 <GameBoard>
                     {this.state.gameStart ? (
                             <Row>
@@ -125,7 +124,6 @@ class Play extends Component {
                             </NewGameMenu>
                     )}
                 </GameBoard>
-
             </div>
         )
     }

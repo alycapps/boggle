@@ -17,7 +17,6 @@ export const NewGameMenu = (props) => (
 
             {/* Board Size */}
             <Row>
-                {/* <div class="btn-group btn-group-lg" role="group" aria-label="Basic example"> */}
                     <Col md="2"></Col>
                     <Col md="2">
                         <button type="button" class="btn btn-primary">4X4</button>
@@ -27,7 +26,6 @@ export const NewGameMenu = (props) => (
                     <button type="button" class="btn btn-primary">5X5</button>
                     </Col>
                     <Col md="2"></Col>
-                {/* </div> */}     
             </Row>
 
             <br></br>
