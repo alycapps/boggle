@@ -9,7 +9,7 @@ class Play extends Component {
     state = {
         dice: [],
         boardSize: "",
-        gameStart: false
+        gameStarted: false
     };
 
     componentDidMount() {
@@ -108,11 +108,20 @@ class Play extends Component {
         return array;
     };
 
+    handleInputChange = event => {
+        event.preventDefault()
+        const { name, value } = event.target;
+        this.setState({
+          [name]: value
+        });
+        console.log(this.state)
+    };
+
     render() {
         return (
             <div>
                 <GameBoard>
-                    {this.state.gameStart ? (
+                    {this.state.gameStarted ? (
                             <Row>
                                 {this.state.dice.map( die => (
                                     <Die colSize={this.state.boardSize} key={die.id} value={die.value}>
@@ -120,7 +129,7 @@ class Play extends Component {
                                 ))}
                             </Row>
                     ) : (
-                            <NewGameMenu>
+                            <NewGameMenu inputChange={this.handleInputChange} startGame={this.handleInputChange}>
                             </NewGameMenu>
                     )}
                 </GameBoard>

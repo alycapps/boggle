@@ -8,9 +8,9 @@ export const NewGameMenu = (props) => (
     <div>
          <Form>
              {/* New/Current */}
-            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-primary">New</button>
-                <button type="button" class="btn btn-primary">Current</button>
+            <div className="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <button type="button" className="btn btn-primary">New</button>
+                <button type="button" className="btn btn-primary">Current</button>
             </div>
             <br></br>
             <br></br>
@@ -19,11 +19,11 @@ export const NewGameMenu = (props) => (
             <Row>
                     <Col md="2"></Col>
                     <Col md="2">
-                        <button type="button" class="btn btn-primary">4X4</button>
+                        <button onClick={props.inputChange} name="boardSize" type="button" className="btn btn-primary" value="3">4X4</button>
                     </Col>
                     <Col md="4"></Col>
                     <Col md="2">
-                    <button type="button" class="btn btn-primary">5X5</button>
+                    <button onClick={props.inputChange} name="boardSize" type="button" className="btn btn-primary" value="2">5X5</button>
                     </Col>
                     <Col md="2"></Col>
             </Row>
@@ -34,9 +34,9 @@ export const NewGameMenu = (props) => (
             <Row>
                 <Col md="2"></Col>
                 <Col md="2">
-                <div class="form-check form-check-inline ">
-                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked></input>
-                    <label className="form-check-label" for="exampleRadios1">
+                <div className="form-check form-check-inline ">
+                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" defaultChecked></input>
+                    <label className="form-check-label" htmlFor="exampleRadios1">
                         Practice
                     </label>
                 </div>
@@ -45,7 +45,7 @@ export const NewGameMenu = (props) => (
                 <Col md="2">
                 <div className="form-check form-check-inline ">
                     <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></input>
-                    <label className="form-check-label" for="exampleRadios2">
+                    <label className="form-check-label" htmlFor="exampleRadios2">
                         Opponent
                     </label>
                 </div>
@@ -57,8 +57,8 @@ export const NewGameMenu = (props) => (
                 <Col md="2">
 
                     <div className="form-check">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked></input>
-                        <label className="form-check-label" for="exampleRadios1">
+                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" defaultChecked></input>
+                        <label className="form-check-label" htmlFor="exampleRadios1">
                             Random
                         </label>
                     </div>
@@ -68,7 +68,7 @@ export const NewGameMenu = (props) => (
                 <Col md="2">
                     <div className="form-check">
                         <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"></input>
-                        <label className="form-check-label" for="exampleRadios2">
+                        <label className="form-check-label" htmlFor="exampleRadios2">
                             Search
                         </label>
                     </div>
@@ -77,7 +77,7 @@ export const NewGameMenu = (props) => (
             </Row>
 
             <br></br>
-            <button type="submit" className="btn btn-primary">Start</button>
+            <button name="gameStarted" onClick={props.startGame} className="btn btn-primary" value="true">Start</button>
         </Form>
     </div>
 );
