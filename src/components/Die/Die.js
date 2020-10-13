@@ -8,8 +8,8 @@ var height = {
 };
 
 export const Die = (props) => (
-    <Col md={props.colSize} className={props.key}>
-        <Button variant="secondary" style={height}>
+    <Col md={props.colSize} >
+        <Button value={props.value} variant="secondary" style={height} key={props.key}>
             {props.value}
         </Button>
     </Col>
