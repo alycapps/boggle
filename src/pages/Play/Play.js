@@ -117,6 +117,13 @@ class Play extends Component {
         console.log(this.state)
     };
 
+    startGame = event => {
+        this.setState({
+        gameStarted: "true"
+        });
+        console.log(this.state)
+    };
+
     render() {
         return (
             <div>
@@ -129,7 +136,7 @@ class Play extends Component {
                                 ))}
                             </Row>
                     ) : (
-                            <NewGameMenu inputChange={this.handleInputChange} startGame={this.handleInputChange}>
+                            <NewGameMenu inputChange={this.handleInputChange} startGame={this.startGame}>
                             </NewGameMenu>
                     )}
                 </GameBoard>
