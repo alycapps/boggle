@@ -31,15 +31,20 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve('client/build', 'index.html'));
 });
 }
-
+ const connection;
 // config db ====================================
-const connection = mysql.createConnection({
-  host: process.env.dbHost,
-  user: process.env.dbUser,
-  password: process.env.dbPass,
-//   port: '3306',
-  database: process.env.dbName
-});
+if (process.env.JAWSDB_URL) {
+	connection = mysql.createConnection(process.env.JAWSDB_URL)
+}
+else {
+	connection = mysql.createConnection({
+		host: process.env.dbHost,
+		user: process.env.dbUser,
+		password: process.env.dbPass,
+		//   port: '3306',
+		database: process.env.dbName
+	});
+}
 
 // connect to db 
 connection.connect(function(err) {
