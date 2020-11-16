@@ -16,7 +16,7 @@ A fun app that allows you to play a word search game.
 * Perform a npm install
 * To run "yarn start"
 
-Deployed at ____
+Deployed at https://gentle-anchorage-88410.herokuapp.com/
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
