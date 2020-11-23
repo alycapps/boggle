@@ -1,89 +1,49 @@
-// Loading evnironmental variables here
-if (process.env.NODE_ENV !== 'production') {
-	console.log('loading dev environments');
-	require('dotenv').config();
-}
-require('dotenv').config();
+// Requiring necessary npm packages
+var express = require("express");
+var bodyParser = require("body-parser");
+var session = require("express-session");
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
 
-const express = require("express");
-const app = express();
-const mysql = require('mysql');
-const PORT = process.env.PORT || 3001;
-const routes = require("./routes");
-const passport = require('./passport');
+// Setting up port and requiring models for syncing
+var PORT = process.env.PORT || 8085;
+var db = require("./models");
 
-
-// app.use(function(req, res, next) {
-// res.header('Access-Control-Allow-Origin', '*');
-// res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-// next();
-// });
-
-app.set('port', process.env.PORT || 3001);
-
-// Express only serves static assets in production
-console.log('NODE_ENV: ', process.env.NODE_ENV);
-if (process.env.NODE_ENV === 'production') {
-app.use(express.static('client/build'));
-
-// Return the main index.html, so react-router render the route in the client
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve('client/build', './index.html'));
-});
-}
- const connection;
-// config db ====================================
-if (process.env.JAWSDB_URL) {
-	connection = mysql.createConnection(process.env.JAWSDB_URL)
-}
-else {
-	connection = mysql.createConnection({
-		host: process.env.dbHost,
-		user: process.env.dbUser,
-		password: process.env.dbPass,
-		//   port: '3306',
-		database: process.env.dbName
-	});
-}
-
-// connect to db 
-connection.connect(function(err) {
-	if (err) {
-		return console.error('error: ' + err.message);
-	}
-	console.log('Connected to the MySQL server.');
-});
-
-connection.query('USE ' + process.env.dbName);	
-
-// Passport
+// Creating express app and configuring middleware needed for authentication
+var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static("public"));
+// We need to use sessions to keep track of our user's login status
+app.use(
+  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+);
 app.use(passport.initialize());
-app.use(passport.session()); // will call the deserializeUser
+app.use(passport.session());
 
-// If its production environment!
-if (process.env.NODE_ENV === 'production') {
-	const path = require('path');
-	console.log('YOU ARE IN THE PRODUCTION ENV');
-	app.use('/static', express.static(path.join(__dirname, '../client/build/static')));
-	app.get('/', (req, res) => {
-		res.sendFile(path.join(__dirname, '../client/build/'))
-	});
+// // Requiring our routes
+// require("./routes/htmlRoutes.js")(app);
+// require("./routes/authRoutes.js")(app);
+// require("./routes/apiRoutes.js")(app);
+
+var syncOptions = { force: false };
+
+// If running a test, set syncOptions.force to true
+// clearing the `testdb`
+if (process.env.NODE_ENV === "test") {
+  syncOptions.force = true;
 }
 
-// Add routes, both API and view
-app.use(routes);
-
-// Error handler
-app.use(function(err, req, res, next) {
-	console.log('====== ERROR =======');
-	console.error(err.stack);
-	res.status(500);
+// Syncing our database and logging a message to the user upon success
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(PORT, function() {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
+  });
 });
 
-// Starting Server
-app.listen(PORT, '0.0.0.0', (err) => {
-	if (err) {
-		return console.error('error: ' + err.message);
-	}
-	console.log(`API Server now listening on PORT ${PORT}!`);
-});
+//needed for testing
+module.exports = app;
