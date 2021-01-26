@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
-import GameBoard from "../../components/GameBoard";
+import GameBoard from "../../components/GameBoard/index";
 import NewGameMenu from "../../components/NewGameMenu"
 import Die from "../../components/Die/index";
 import Row from 'react-bootstrap/Row'
