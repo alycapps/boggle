@@ -1,27 +1,26 @@
-import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
-import GameBoard from "../../components/GameBoard.js";
-import NewGameMenu from "../../components/NewGameMenu.js"
-import Die from "../../components/Die.js";
+import React, { useEffect, useState } from "react";
+// import { withRouter } from 'react-router-dom';
+import GameBoard from "../components/GameBoard.js";
+import NewGameMenu from "../components/NewGameMenu.js"
+import Die from "../components/Die.js";
 import Row from 'react-bootstrap/Row'
 
-class Play extends Component {
-    state = {
-        dice: [],
-        boardSize: "",
-        gameStarted: false
-    };
+const Play = () => {
+    const [dice, setDice] = useState([])
+    const [boardSize, setBoardSize] = useState("")
+    const [gameStarted, setGameStarted] = useState(false)
+    const [formObject, setFormObject] = useState({})
 
-    componentDidMount() {
-        this.randomizeDice(3)
+
+    useEffect(() => {
+        randomizeDice(3)
         //TODO: need to set boardSize equal to value from form later
-        this.setState({ 
-            boardSize: "3"
-      }, console.log(this.state.boardSize, "boardSize"));
-    };
+        setBoardSize(3);
+        console.log(boardSize, "boardSize");
+    }, []);
 
     // This will chose the 16 or 25 set of die and then randomize the order of the array and then randomly chose a letter from each die which will be set to this.state.dice
-    randomizeDice(size) {
+    function randomizeDice(size) {
         let dice=[]
         if (size === 3) {
             //small 16 dice array
@@ -77,7 +76,7 @@ class Play extends Component {
         let decidedArray = [];
         //below randomizes the letter chosen from each die
         let index = 0;
-        this.shuffle(dice);
+        shuffle(dice);
         dice.forEach(die => {
             var letterIndex = Math.floor(Math.random()*6)
             var obj = {};
@@ -87,13 +86,12 @@ class Play extends Component {
             index ++;
         });
         console.log("TODO in Play.js -- add in randomization of order of decidedArray");
-        this.setState({ 
-              dice: decidedArray
-        }, console.log(decidedArray, "decidedArray"));
+        setDice(decidedArray);
+        console.log(decidedArray, "decidedArray");
     };
 
     //this will randomize the order of the items in an array
-    shuffle(array) {
+    function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
@@ -108,7 +106,8 @@ class Play extends Component {
         return array;
     };
 
-    handleInputChange = event => {
+    ///NEED TO FIX HANDLEINPUTCHANGE FUNCTION
+    function handleInputChange(event) {
         event.preventDefault()
         const { name, value } = event.target;
         this.setState({
@@ -117,32 +116,35 @@ class Play extends Component {
         console.log(this.state)
     };
 
-    startGame = event => {
-        this.setState({
-        gameStarted: "true"
-        });
-        console.log(this.state)
+    // Handles updating component state when the user types into the input field
+    // ????
+    // function handleInputChange(event) {
+    //     const { name, value } = event.target;
+    //     setFormObject({...formObject, [name]: value})
+    // };
+
+    function startGame(event) {
+        setGameStarted(true)
+        console.log(gameStarted, "gameStarted")
     };
 
-    render() {
-        return (
-            <div>
-                <GameBoard>
-                    {this.state.gameStarted ? (
-                            <Row>
-                                {this.state.dice.map( die => (
-                                    <Die colSize={this.state.boardSize} key={die.id} value={die.value}>
-                                    </Die>
-                                ))}
-                            </Row>
-                    ) : (
-                            <NewGameMenu inputChange={this.handleInputChange} startGame={this.startGame}>
-                            </NewGameMenu>
-                    )}
-                </GameBoard>
-            </div>
-        )
-    }
+    return(
+        <div>
+            <GameBoard>
+                {gameStarted ? (
+                        <Row>
+                            {dice.map( die => (
+                                <Die colSize={boardSize} key={die.id} value={die.value}>
+                                </Die>
+                            ))}
+                        </Row>
+                ) : (
+                        <NewGameMenu InputChange={handleInputChange} startGame={startGame}>
+                        </NewGameMenu>
+                )}
+            </GameBoard>
+        </div>
+    )
 };
 
-export default withRouter(Play);
+export default Play;

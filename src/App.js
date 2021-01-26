@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Play from "./pages/Play"
+import Play from "./pages/Play.js"
 import NoMatch from "./pages/NoMatch"
 import Nav from "./components/HeadNav.js"
 
