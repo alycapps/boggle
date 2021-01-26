@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const textForm = (props) => (
+const TextForm = (props) => (
     <div>
          <Form>
             <div class="form-group">
@@ -15,4 +15,4 @@ const textForm = (props) => (
     </div>
 );
 
-export default textForm;
+export default TextForm;
