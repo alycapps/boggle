@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
-import GameBoard from "../../components/GameBoard/index";
+import GameBoard from "../../components/GameBoard";
 import NewGameMenu from "../../components/NewGameMenu"
-import Die from "../../components/Die/index";
+import Die from "../../components/Die";
 import Row from 'react-bootstrap/Row'
 
 class Play extends Component {
