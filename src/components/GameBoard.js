@@ -10,32 +10,40 @@ var borderStyle = {
     height: "50vh"
 };
 
-const GameBoard = (props) => (
-  <div>
-        <br/>
-      <Container>
-        <Row>
+function GameBoard(props) {
+  // const [boardSize, setBoardSize] = useState("")
 
-            {/* Left side */}
-            <Col md={2}>
-              hello
-            </Col>
+  return (
+    <div>
+          <br/>
+        <Container>
+          <Row>
 
-            {/* Main Box */}
-            <Col md={8}>
-              <Card border="primary" style={borderStyle}>
-                  <Card.Body>{props.children}</Card.Body>
-              </Card>
-            </Col>
+              {/* Left side */}
+              <Col md={2}>
+                hello
+              </Col>
 
-            {/* Right side */}
-            <Col md={2}>
-              hello
-            </Col>
+              {/* Main Box */}
+              <Col md={8}>
+                <Card border="primary" style={borderStyle}>
+                  {/* { (props.boardSize == 3) ? ( */}
+                    <Card.Body>{props.children}</Card.Body>
+                  {/* ):( */}
+                    {/* <div>Hello</div> */}
+                  {/* )} */}
+                </Card>
+              </Col>
 
-        </Row>
-      </Container>
-  </div>
-);
+              {/* Right side */}
+              <Col md={2}>
+                hello
+              </Col>
+
+          </Row>
+        </Container>
+    </div>
+  )
+};
 
 export default GameBoard;

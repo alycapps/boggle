@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import GameBoard from "../components/GameBoard.js";
 import NewGameMenu from "../components/NewGameMenu.js"
 import Die from "../components/Die.js";
-import Row from 'react-bootstrap/Row'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+
 
 const Play = () => {
     const [dice, setDice] = useState([])
@@ -121,17 +123,43 @@ const Play = () => {
 
     return(
         <div>
-            <GameBoard>
+            <GameBoard boardSize={boardSize}>
                 {gameStarted ? (
                         <Row>
-                            {dice.map( die => (
-                                <Die colSize={boardSize} key={die.id} value={die.value}>
-                                </Die>
-                            ))}
+                            {dice.map( (die, index) => {
+                                // console.log(index, "index dice.map")
+                                if(index == 0 || index % 5 == 0 ) {
+                                    console.log(index, "colum before")
+                                    return (
+                                        <>
+                                            <Col md={1}></Col>
+                                            <Die colSize={boardSize} key={die.id} value={die.value}>
+                                            </Die>
+                                        </> 
+                                    )
+                                }
+                                else if( (index+1) % 5 == 0 ) {
+                                    console.log(index, "colum after")
+                                    return (
+                                        <>
+                                            <Die colSize={boardSize} key={die.id} value={die.value}>
+                                            </Die>
+                                            <Col md={1}></Col>
+                                        </> 
+                                    )
+                                }
+                                else {
+                                    console.log(index, "no collumn")
+                                    return (
+                                        <Die colSize={boardSize} key={die.id} value={die.value}>
+                                        </Die> 
+                                    )   
+                                }
+                            })}
                         </Row>
                 ) : (
-                        <NewGameMenu startGame={startGame} updateBoardSize={updateBoardSize}>
-                        </NewGameMenu>
+                    <NewGameMenu startGame={startGame} updateBoardSize={updateBoardSize}>
+                    </NewGameMenu>
                 )}
             </GameBoard>
         </div>
