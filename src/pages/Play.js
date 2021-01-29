@@ -7,15 +7,15 @@ import Row from 'react-bootstrap/Row'
 
 const Play = () => {
     const [dice, setDice] = useState([])
-    const [boardSize, setBoardSize] = useState("")
+    const [boardSize, setBoardSize] = useState(3)
     const [gameStarted, setGameStarted] = useState(false)
-    const [formObject, setFormObject] = useState({})
+    // const [formObject, setFormObject] = useState({})
 
 
     useEffect(() => {
         randomizeDice(3)
         //TODO: need to set boardSize equal to value from form later
-        setBoardSize(3);
+        // setBoardSize(3);
         console.log(boardSize, "boardSize");
     }, []);
 
@@ -106,26 +106,16 @@ const Play = () => {
         return array;
     };
 
-    ///NEED TO FIX HANDLEINPUTCHANGE FUNCTION
-    function handleInputChange(event) {
-        event.preventDefault()
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-        console.log(this.state)
-    };
-
-    // Handles updating component state when the user types into the input field
-    // ????
-    // function handleInputChange(event) {
-    //     const { name, value } = event.target;
-    //     setFormObject({...formObject, [name]: value})
-    // };
-
     function startGame(event) {
+        console.log(event, "event startGame")
         setGameStarted(true)
         console.log(gameStarted, "gameStarted")
+    };
+
+    const updateBoardSize = (event) => {
+        event.preventDefault()
+        const { value } = event.target;
+        setBoardSize(value);
     };
 
     return(
@@ -139,7 +129,7 @@ const Play = () => {
                             ))}
                         </Row>
                 ) : (
-                        <NewGameMenu InputChange={handleInputChange} startGame={startGame}>
+                        <NewGameMenu startGame={startGame} updateBoardSize={updateBoardSize}>
                         </NewGameMenu>
                 )}
             </GameBoard>

@@ -1,10 +1,15 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from "react";
+
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-const NewGameMenu = (props) => (
+function NewGameMenu(props) {
+    // const [boardSize, setBoardSize] = useState("")
+
+    return (
     <div>
          <Form>
              {/* New/Current */}
@@ -19,11 +24,11 @@ const NewGameMenu = (props) => (
             <Row>
                     <Col md="2"></Col>
                     <Col md="2">
-                        <button onClick={props.inputChange} name="boardSize" type="button" className="btn btn-primary" value="3">4X4</button>
+                        <button onClick={props.updateBoardSize} name="boardSize" type="button" className="btn btn-primary" value="3">4X4</button>
                     </Col>
                     <Col md="4"></Col>
                     <Col md="2">
-                    <button onClick={props.inputChange} name="boardSize" type="button" className="btn btn-primary" value="2">5X5</button>
+                    <button onClick={props.updateBoardSize} name="boardSize" type="button" className="btn btn-primary" value="2">5X5</button>
                     </Col>
                     <Col md="2"></Col>
             </Row>
@@ -80,6 +85,7 @@ const NewGameMenu = (props) => (
             <button name="gameStarted" onClick={props.startGame} className="btn btn-primary" value="true">Start</button>
         </Form>
     </div>
-);
+    )
+};
 
 export default NewGameMenu;
