@@ -116,6 +116,7 @@ const Play = () => {
         event.preventDefault()
         const { value } = event.target;
         setBoardSize(value);
+        randomizeDice(parseInt(value));
     };
 
     return(
