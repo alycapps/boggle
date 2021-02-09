@@ -110,8 +110,33 @@ const Play = () => {
 
     function startGame(event) {
         console.log(event, "event startGame")
-        setGameStarted(true)
+        setGameStarted(true);
+        startTimer(1);
         console.log(gameStarted, "gameStarted")
+    };
+    
+    function startTimer(min) {
+        console.log("startTimer");
+        var timeLeft = min * 60;
+
+        var timeInterval = setInterval(function () {
+            if (timeLeft > 1) {
+            console.log(timeLeft + ' seconds remaining')
+            timeLeft--;
+            } else if (timeLeft === 1) {
+            console.log(timeLeft + ' second remaining');
+            timeLeft--;
+            } else {
+            console.log("time over");
+            //stops timer
+            clearInterval(timeInterval);
+            gameOver()
+            }
+        }, 1000);
+    };
+
+    function gameOver() {
+        console.log("game over")
     };
 
     const updateBoardSize = (event) => {
